@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}{% endblock title %}</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='shit-post-favicon.svg') }}">
+    
     <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -30,29 +33,27 @@
     <header>
       <div class="navbar">
         <div class="logo">
-          <a href="{{ url_for('views.home') }}">Shit/Posting Logo</a>
+          <a href="{{ url_for('views.home') }}">&lbrace; Shit/Posting Logo &rbrace;</a>
         </div>
         <ul class="links">
-          <li><a href="#">Home</a></li>
+          <li><a href="#">Posts</a></li>
+          <!-- <li><a href="#">Profile</a></li> -->
           <li><a href="#">Find Users</a></li>
-          <li><a href="#">Profile</a></li>
-          <li><a href="#">Messages</a></li>
         </ul>
         <div class="action">
-          <a href="{{ url_for('auth.login') }}" class="action_btn">Login</a>
-          <a href="{{ url_for('auth.signup') }}" class="action_btn">Sign Up</a>
-          <a href="{{ url_for('auth.logout') }}" class="action_btn">Log Out</a>
+          <a href="#" class="action_btn">Login</a>
+          <a href="#" class="action_btn">Sign Up</a>
+          <!-- <a href="{{ url_for('auth.logout') }}" class="action_btn">Log Out</a> -->
         </div>
         <div class="toggle_btn" id="toggle-btn">
           <i class="fa-solid fa-bars"></i>
         </div>
         <div class="dropdown_menu">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Find Users</a></li>
+          <li><a href="#">Posts</a></li>
           <li><a href="#">Profile</a></li>
-          <li><a href="#">Messages</a></li>
-          <li><a href="{{ url_for('auth.login') }}" class="action_btn">Login</a></li>
-          <li><a href="{{ url_for('auth.signup') }}" class="action_btn">Sign Up</a></li>
+          <li><a href="#">Find Users</a></li>
+          <li><a href="#" class="action_btn">Login</a></li>
+          <li><a href="#" class="action_btn">Sign Up</a></li>
           <li><a href="{{ url_for('auth.logout') }}" class="action_btn">Log Out</a></li>
         </div>
       </div>
