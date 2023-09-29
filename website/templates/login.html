@@ -1,4 +1,14 @@
-{% extends "layout.html" %} {% block title %}Login{% endblock title %}
-{% block content %}
 <!-- Login Form -->
-{% endblock content %}
+<div class="card-front">
+    <form action="" method="post">
+        <div class="mb-3">
+            <label for="inputUsername" class="form-label">Username</label>
+            <input type="text" class="form-control" id="inputUsername">
+        </div>
+        <div class="mb-3">
+            <label for="inputPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="inputPassword">
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>

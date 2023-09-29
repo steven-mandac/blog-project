@@ -1,4 +1,17 @@
-{% extends "layout.html" %} {% block title %}Sign Up{% endblock title %}
-{% block content %}
-<!-- Sign Up Form -->
-{% endblock content %}
+<div class="card-back">
+    <form action="" method="post">
+        <div class="mb-3">
+            <label for="inputUsername" class="form-label">Username</label>
+            <input type="text" class="form-control" id="inputUsername">
+        </div>
+        <div class="mb-3">
+            <label for="inputEmail" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="inputEmail">
+        </div>
+        <div class="mb-3">
+            <label for="inputPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="inputPassword">
+        </div>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+    </form>
+</div>
