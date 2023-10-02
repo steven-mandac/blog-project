@@ -27,15 +27,15 @@ def signup():
             if username_exist:
                 flash("Username already taken.", category="danger")
             elif email_exist:
-                flash("You have already signed up with this email, login instead!", category="danger")
-        
-        new_user = User(username=username,
-                        email=email,
-                        password=hashed_password)
-        db.session.add(new_user)
-        db.session.commit()
-        login_user(new_user)
-        return redirect(url_for('views.home'))
+                flash("Email address is already registered!", category="danger")
+            else:
+                new_user = User(username=username,
+                                email=email,
+                                password=hashed_password)
+                db.session.add(new_user)
+                db.session.commit()
+                login_user(new_user)
+                return redirect(url_for('views.home'))
     return render_template("signup.html")
 
 @auth.route('/login', methods=['GET', 'POST'])
