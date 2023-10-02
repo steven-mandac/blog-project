@@ -1,5 +1,6 @@
-<!-- Login Form -->
-<div class="card-front">
+{% extends "layout.html" %}
+{% block content %}
+<div class="card card-front p-3 m-3">
     <form action="{{ url_for('auth.login') }}" method="post">
         <div class="mb-3">
             <label for="inputUsername" class="form-label">Username</label>
@@ -12,3 +13,4 @@
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
 </div>
+{% endblock content %}

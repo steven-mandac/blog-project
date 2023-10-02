@@ -55,11 +55,16 @@
         </div>
         <div class="dropdown_menu">
           <li><a href="#">Posts</a></li>
+          {% if current_user.is_authenticated %}
           <li><a href="#">Profile</a></li>
+          {% endif %}
           <li><a href="#">Find Users</a></li>
+          {% if not current_user.is_authenticated %}
           <li><a href="{{ url_for('auth.login') }}" class="action_btn">Login</a></li>
           <li><a href="{{ url_for('auth.signup') }}" class="action_btn">Sign Up</a></li>
+          {% else %}
           <li><a href="{{ url_for('auth.logout') }}" class="action_btn">Log Out</a></li>
+          {% endif %}
         </div>
       </div>
     </header>

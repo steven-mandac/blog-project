@@ -1,4 +1,6 @@
-<div class="card-back">
+{% extends "layout.html" %}
+{% block content %}
+<div class="card card-back p-3 m-3">
     <form action="{{ url_for('auth.signup') }}" method="post">
         <div class="mb-3">
             <label for="inputUsername" class="form-label">Username</label>
@@ -15,3 +17,4 @@
         <button type="submit" class="btn btn-primary">Sign Up</button>
     </form>
 </div>
+{% endblock content %}
