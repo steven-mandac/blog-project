@@ -37,13 +37,18 @@
         </div>
         <ul class="links">
           <li><a href="#">Posts</a></li>
-          <!-- <li><a href="#">Profile</a></li> -->
+          {% if current_user.is_authenticated %}
+          <li><a href="#">Profile</a></li>
+          {% endif %}
           <li><a href="#">Find Users</a></li>
         </ul>
         <div class="action">
-          <a href="#" class="action_btn">Login</a>
-          <a href="#" class="action_btn">Sign Up</a>
-          <!-- <a href="{{ url_for('auth.logout') }}" class="action_btn">Log Out</a> -->
+          {% if current_user.is_authenticated %}
+          <a href="{{ url_for('auth.logout') }}" class="action_btn">Log Out</a>
+          {% else %}
+          <a href="{{ url_for('auth.login') }}" class="action_btn">Login</a>
+          <a href="{{ url_for('auth.signup') }}" class="action_btn">Sign Up</a>
+          {% endif %}
         </div>
         <div class="toggle_btn" id="toggle-btn">
           <i class="fa-solid fa-bars"></i>
@@ -52,8 +57,8 @@
           <li><a href="#">Posts</a></li>
           <li><a href="#">Profile</a></li>
           <li><a href="#">Find Users</a></li>
-          <li><a href="#" class="action_btn">Login</a></li>
-          <li><a href="#" class="action_btn">Sign Up</a></li>
+          <li><a href="{{ url_for('auth.login') }}" class="action_btn">Login</a></li>
+          <li><a href="{{ url_for('auth.signup') }}" class="action_btn">Sign Up</a></li>
           <li><a href="{{ url_for('auth.logout') }}" class="action_btn">Log Out</a></li>
         </div>
       </div>

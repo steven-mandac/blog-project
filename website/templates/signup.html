@@ -1,16 +1,16 @@
 <div class="card-back">
-    <form action="" method="post">
+    <form action="{{ url_for('auth.signup') }}" method="post">
         <div class="mb-3">
             <label for="inputUsername" class="form-label">Username</label>
-            <input type="text" class="form-control" id="inputUsername">
+            <input type="text" name="username" class="form-control" id="inputUsername">
         </div>
         <div class="mb-3">
             <label for="inputEmail" class="form-label">Email Address</label>
-            <input type="email" class="form-control" id="inputEmail">
+            <input type="email" name="email" class="form-control" id="inputEmail">
         </div>
         <div class="mb-3">
             <label for="inputPassword" class="form-label">Password</label>
-            <input type="password" class="form-control" id="inputPassword">
+            <input type="password" name="password" class="form-control" id="inputPassword">
         </div>
         <button type="submit" class="btn btn-primary">Sign Up</button>
     </form>
