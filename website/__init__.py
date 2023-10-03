@@ -8,7 +8,7 @@ login_manager = LoginManager()
 
 def create_app():
     app = Flask(__name__)
-    app.secret_key = "top-secret-key"
+    app.config['SECRET_KEY'] = "top-secret-key"
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     db.init_app(app)
     login_manager.init_app(app)

@@ -6,6 +6,10 @@ from .models import User
 
 auth = Blueprint('auth', __name__)
 
+def is_empty(field):
+    if not field.strip():
+        return True
+    return False
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -14,8 +18,8 @@ def load_user(user_id):
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
-        username = request.form.get('username')
         email = request.form.get('email')
+        username = request.form.get('username')
         password = request.form.get('password')
         hashed_password = generate_password_hash(password, method="pbkdf2:sha256", salt_length=8)
         try:
@@ -25,9 +29,9 @@ def signup():
             pass
         else:            
             if username_exist:
-                flash("Username already taken.", category="danger")
+                flash("The username is already taken.", category="danger")
             elif email_exist:
-                flash("Email address is already registered!", category="danger")
+                flash("The email address is already registered to another user.", category="danger")
             else:
                 new_user = User(username=username,
                                 email=email,
@@ -55,6 +59,7 @@ def login():
     return render_template("login.html")
 
 @auth.route('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('views.home'))
