@@ -49,7 +49,7 @@
                 <a class="nav-link px-lg-3 py-3 py-lg-4" href="#">Find Users</a>
               </li>
               {% if current_user.is_authenticated %}
-              <li><a class="nav-link px-lg-3 py-3 py-lg-4" href="#">Profile</a></li>
+              <li><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ url_for('views.profile', username=current_user.username) }}">Profile</a></li>
               {% endif %}
               <!-- Only show Login/Register if user is logged out. Otherwise show "Log Out" -->
               {% if not current_user.is_authenticated: %}

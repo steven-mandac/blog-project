@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>{{ user }}</h1>
+{% if user_posts %}
+<div class="d-flex flex-row flex-wrap">
+    {% for post in user_posts %}
+    <div class="post-item text-light">
+        <h4>{{ post.user.username }}</h4>
+        <i>{{ post.date.strftime('%B %d, %Y') }}</i>
+        <p class="lead">{{ post.post }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock content %}
