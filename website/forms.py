@@ -14,8 +14,8 @@ class LoginForm(FlaskForm):
     submit = SubmitField("Login")
 
 class ShitPostForm(FlaskForm):
-    post = TextAreaField("Show your shit to the world!", validators=[InputRequired()])
-    submit = SubmitField("Post Shit")
+    post = TextAreaField("What's on your mind?", validators=[InputRequired()])
+    submit = SubmitField("Post")
     
 class CommentForm(FlaskForm):
     comment = TextAreaField("Say something about this shit.", validators=[InputRequired()])

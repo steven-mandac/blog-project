@@ -1,7 +1,26 @@
 from . import db
 from flask_login import UserMixin
 from sqlalchemy.orm import relationship
-from sqlalchemy.sql import func
+import datetime
+import pytz
+
+class CustomDateTime:
+    def __init__(self, year, month, day, hour, minute, second):
+        self.year = year
+        self.month = month
+        self.day = day
+        self.hour = hour
+        self.minute = minute
+        self.second = second
+        
+def custom_to_datetime(custom_dt):
+    return datetime.datetime(
+        custom_dt.year, custom_dt.month, custom_dt.day,
+        custom_dt.hour, custom_dt.minute, custom_dt.second
+    )
+
+date_now = custom_to_datetime(datetime.datetime.now(pytz.timezone('Asia/Singapore')))
+
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
@@ -17,7 +36,7 @@ class ShitPost(db.Model):
     __tablename__ = 'shitposts'
     id = db.Column(db.Integer, primary_key=True)
     post = db.Column(db.String(10000))
-    date = db.Column(db.DateTime(timezone=True), default=func.now())
+    date = db.Column(db.DateTime, default=date_now)
     user = relationship('User', back_populates='posts')
     user_id = db.Column(db.ForeignKey('users.id'))
     
