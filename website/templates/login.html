@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="card card-front p-3 m-3">
+<div class="form-container p-5 mt-5 mx-auto text-light rounded-4">
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
     {% for category, message in messages %}
@@ -8,16 +8,15 @@
     {% endfor %}
     {% endif %}
     {% endwith %}
+    {% from 'bootstrap5/form.html' import render_field%}
     <form action="{{ url_for('auth.login') }}" method="post">
         <div class="mb-3">
-            <label for="inputUsername" class="form-label">Username</label>
-            <input type="text" name="username" class="form-control" id="inputUsername" required>
+            {{ render_field(login_form.username, class="form-control", placeholder="username") }}
         </div>
-        <div class="mb-3">
-            <label for="inputPassword" class="form-label">Password</label>
-            <input type="password" name="password" class="form-control" id="inputPassword" required>
+        <div class="mb-4">
+            {{ render_field(login_form.password, class="form-control", placeholder="••••••••••") }}
         </div>
-        <button type="submit" class="btn btn-primary">Login</button>
+        {{ render_field(login_form.submit, class="btn btn-dark btn-outline-warning") }}
     </form>
 </div>
 {% endblock content %}

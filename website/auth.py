@@ -3,6 +3,7 @@ from flask_login import login_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db, login_manager
 from .models import User
+from .forms import RegisterForm, LoginForm
 
 auth = Blueprint('auth', __name__)
 
@@ -17,10 +18,11 @@ def load_user(user_id):
 
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def signup():
-    if request.method == 'POST':
-        email = request.form.get('email')
-        username = request.form.get('username')
-        password = request.form.get('password')
+    signup_form = RegisterForm()
+    if request.method == 'POST' or signup_form.validate_on_submit():
+        email = signup_form.email.data
+        username = signup_form.username.data
+        password = signup_form.password.data
         hashed_password = generate_password_hash(password, method="pbkdf2:sha256", salt_length=8)
         try:
             email_exist = db.session.query(User).where(User.email == email).scalar()
@@ -40,13 +42,14 @@ def signup():
                 db.session.commit()
                 login_user(new_user)
                 return redirect(url_for('views.home'))
-    return render_template("signup.html")
+    return render_template("signup.html", signup_form=signup_form)
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
+    login_form = LoginForm()
+    if request.method == 'POST' or login_form.validate_on_submit():
+        username = login_form.username.data
+        password = login_form.password.data
         user = db.session.query(User).where(User.username == username).scalar()
         if user:
             if check_password_hash(user.password, password):
@@ -56,7 +59,7 @@ def login():
                 flash("Incorrect password.", category="danger")
         else:
             flash("User not registered.", category="danger")
-    return render_template("login.html")
+    return render_template("login.html", login_form=login_form)
 
 @auth.route('/logout')
 @login_required

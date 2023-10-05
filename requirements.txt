@@ -5,3 +5,5 @@ Flask-WTF
 Werkzeug
 WTForms
 SQLAlchemy
+email_validator
+bootstrap-flask
