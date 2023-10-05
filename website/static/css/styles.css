@@ -38,8 +38,36 @@ header {
 
 .form-container {
   background-color: rgba(0, 0, 0, 0.6);
-  max-width: 500px;
+  max-width: 800px;
 }
+
+.login,
+.signup {
+  max-width: 500px !important;
+}
+
+.post-item {
+  width: 800px;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(15);
+}
+
+.anon-user-heading {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 800px;
+}
+
+@media(max-width: 995px){
+  .post-item {
+    max-width: 100%;
+    margin-bottom: 10px !important;
+  }
+
+  .anon-user-heading {
+    max-width: 100%;
+  }
+}
+
 
 
 /* BOOTSTRAP NAV */
@@ -65,30 +93,6 @@ header {
   color: var(--bs-nav-link-color);
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
-/* 
-  .action_btn {
-    display: block;
-    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
-    font-size: var(--bs-nav-link-font-size);
-    font-weight: var(--bs-nav-link-font-weight);
-    background-color: #DB9616;
-    color: #e1e1e1;
-    padding: 0.3rem 1rem;
-    border: none;
-    outline: none;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: scale 0.2s ease;
-}
-
-.action_btn:hover {
-    transform: scale(1.05);
-    color: #222222;
-}
-
-.action_btn:active {
-    transform: scale(0.95);
-} */
 
 @media (prefers-reduced-motion: reduce) {
   .nav-link {
