@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="card card-back p-3 m-3">
+<div class="form-container p-5 mt-5 mx-auto text-light rounded-4">
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
     {% for category, message in messages %}
@@ -8,20 +8,19 @@
     {% endfor %}
     {% endif %}
     {% endwith %}
-    <form action="{{ url_for('auth.signup') }}" method="post">
+    {% from 'bootstrap5/form.html' import render_field %}
+    <form action="{{ url_for('auth.signup') }}" method="post" class="">
         <div class="mb-3">
-            <label for="inputUsername" class="form-label">Username</label>
-            <input type="text" name="username" class="form-control" id="inputUsername" required>
+            {{ render_field(signup_form.username, class="form-control", placeholder="username") }}
         </div>
         <div class="mb-3">
-            <label for="inputEmail" class="form-label">Email Address</label>
-            <input type="email" name="email" class="form-control" id="inputEmail" required>
+            {{ render_field(signup_form.email, class="form-control", placeholder="shitpost@email.com") }}
         </div>
-        <div class="mb-3">
-            <label for="inputPassword" class="form-label">Password</label>
-            <input type="password" name="password" class="form-control" id="inputPassword" required>
+        <div class="mb-4">
+            {{ render_field(signup_form.password, class="form-control", placeholder="••••••••••") }}
         </div>
-        <button type="submit" class="btn btn-primary">Sign Up</button>
+        {{ render_field(signup_form.submit, class="btn btn-dark btn-outline-warning align-middle") }}
+
     </form>
 </div>
 {% endblock content %}

@@ -19,10 +19,10 @@ def load_user(user_id):
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def signup():
     signup_form = RegisterForm()
-    if request.method == 'POST':
-        email = request.form.get('email')
-        username = request.form.get('username')
-        password = request.form.get('password')
+    if request.method == 'POST' or signup_form.validate_on_submit():
+        email = signup_form.email.data
+        username = signup_form.username.data
+        password = signup_form.password.data
         hashed_password = generate_password_hash(password, method="pbkdf2:sha256", salt_length=8)
         try:
             email_exist = db.session.query(User).where(User.email == email).scalar()
@@ -47,9 +47,9 @@ def signup():
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     login_form = LoginForm()
-    if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
+    if request.method == 'POST' or login_form.validate_on_submit():
+        username = login_form.username.data
+        password = login_form.password.data
         user = db.session.query(User).where(User.username == username).scalar()
         if user:
             if check_password_hash(user.password, password):
