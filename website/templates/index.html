@@ -1,9 +1,9 @@
 {% extends "layout.html" %} {% block title %}Home{% endblock title %}
 {% block content %}
 {% from 'bootstrap5/form.html' import render_field %}
-
+<div class="content-block py-2 py-lg-4 mb-4">
 {% if current_user.is_authenticated %}
-<div class="form-container p-4 my-5 mx-auto text-light rounded-4">
+<div class="form-container p-4 my-4 mx-3 mx-lg-auto text-light rounded-4">
     <form action="/" method="post">
         <div class="mb-3">
             {{ render_field(shit_form.post, class="form-control aria-label-hidden", placeholder="Share your shit to the world!") }}
@@ -12,7 +12,7 @@
     </form>
 </div>
 {% else %}
-<div class="anon-user-heading p-2 my-5 mx-auto rounded-4">
+<div class="anon-user-heading p-2 mb-5 mx-auto rounded-4">
     <div class="text-center text-light">
         <h1>Latest Shitposts</h1>
     </div>
@@ -29,9 +29,8 @@
     </div>
     {% endfor %}
 </div>
-
 {% else %}
     <h1 class="text-light w-100 text-center mt-5">There are currently {{ shit_posts | length }} shitpost.</h1>
-
 {% endif %}
+</div>
 {% endblock content %}

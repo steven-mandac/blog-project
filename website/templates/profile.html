@@ -1,6 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1>{{ user }}</h1>
+<div class="content-block">
+    <div class="profile-header pb-5 mb-3 text-light">
+        <h1 class="m-0 px-2 px-lg-4 py-1 py-lg-3">{{ user }}</h1>
+    </div>
 {% if user_posts %}
 <div class="d-flex flex-column flex-wrap w-lg-100 align-items-center">
     {% for post in user_posts %}
@@ -12,4 +15,5 @@
     {% endfor %}
 </div>
 {% endif %}
+</div>
 {% endblock content %}

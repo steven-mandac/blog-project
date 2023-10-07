@@ -11,6 +11,11 @@ body {
     background-image: url('../img/index-bg.jpg');
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 li {
@@ -30,11 +35,41 @@ a:hover {
 
 /* HEADER */
 header {
-    position: relative;
-    padding: 0 2rem;
-    background-color: rgba(34, 34, 34, 0.8);
-    backdrop-filter: blur(10px);
+  position: relative;
+  padding: 0 2rem;
+  background-color: rgba(34, 34, 34, 0.8);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 15px #222222;
 }
+
+.profile-header {
+  background-color: rgba(240, 140, 0, 0.75);
+  backdrop-filter: blur(10px);
+}
+
+.content-block {
+  width: 90%;
+  margin: auto;
+  padding-bottom: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-top: none;
+}
+
+@media(max-width: 992px){
+  .content-block {
+    width: 100%;
+    padding-top: 0;
+  }
+
+  header {
+    padding: 0 1rem;
+  }
+}
+
 
 .form-container {
   background-color: rgba(0, 0, 0, 0.6);
@@ -59,7 +94,7 @@ header {
 
 @media(max-width: 995px){
   .post-item {
-    max-width: 100%;
+    max-width: 90%;
     margin-bottom: 10px !important;
   }
 
