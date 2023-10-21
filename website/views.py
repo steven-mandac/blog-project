@@ -11,7 +11,7 @@ views = Blueprint('views', __name__)
 @views.route('/', methods=['GET', 'POST'])
 def home():
     shit_form = ShitPostForm()
-    posts = db.session.execute(db.select(ShitPost)).scalars().all()
+    posts = db.session.execute(db.select(ShitPost)).scalars().all().__reversed__()
     if request.method == 'POST':
         new_post = ShitPost(
             post=shit_form.post.data,
@@ -26,6 +26,6 @@ def home():
 @login_required
 def profile(username):
     user = db.session.execute(db.select(User).where(User.username == username)).scalar()
-    posts = db.session.execute(db.select(ShitPost).where(ShitPost.user_id == user.id)).scalars().all()
+    posts = db.session.execute(db.select(ShitPost).where(ShitPost.user_id == user.id)).scalars().all().__reversed__()
     return render_template("profile.html", user_posts=posts, user=username)
     
